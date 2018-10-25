@@ -6,8 +6,6 @@ An FPGA optimized tiny processor core for utility functions
 the Greek island [Leros](https://en.wikipedia.org/wiki/Leros)
 where the architecture was designed.
 
-A start of a [TODO list](TODO.md)
-
 Leros is documented in following two publications:
 
 1. Martin Schoeberl.
@@ -16,6 +14,8 @@ In Proceedings of the 21st International Conference on Field Programmable Logic 
 2. James Caska and Martin Schoeberl.
 [Java dust: How small can embedded Java be?](http://www.jopdesign.com/doc/lerosjvm.pdf)
 In Proceedings of the 9th International Workshop on Java Technologies for Real-Time and Embedded Systems (JTRES 2011), York, UK, ACM, September 2011.
+
+A work-in-progress handbook is available as LaTeX sourcec at [Leros Handbook](https://github.com/leros-dev/leros-doc/tree/master/handbook)
 
 ## Architecture
 
