@@ -6,6 +6,8 @@ An FPGA optimized tiny processor core for utility functions
 the Greek island [Leros](https://en.wikipedia.org/wiki/Leros)
 where the architecture was designed.
 
+The Leros project is hosted at GitHub in [https://github.com/leros-dev](https://github.com/leros-dev).
+
 Leros is documented in following two publications:
 
 1. Martin Schoeberl.
