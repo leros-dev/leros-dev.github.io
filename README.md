@@ -154,6 +154,25 @@ make APP=test tools jsim
 
 More targets (e.g., synthesize for an FPGA) can be found in the Makefile.
 
+### LLVM Toolchain
+Initially, pull and build the [leros-llvm](https://github.com/leros-dev/leros-llvm).
+
+To compile a C program for the Leros architecture, execute:
+```bash
+clang -target leros32 -c foo.c
+```
+This will create an unlinked ELF object file which contains Leros machine code.
+For emitting Leros assembly code, execute:
+```bash
+clang -target leros32 -S foo.c
+```
+If only the raw Leros instructions are needed, the built LLVM toolchain provides a tool for extracting specific segments from ELF object files:
+```bash
+llvm-objcopy foo.o --dump-section .text=foo.bin
+```
+This will dump the .text segment of the object file to a flat binary file, suitable for running on simulators.
+
+
 *TODO: more descriptions*
 
 ## Leros Versions and Compilers
