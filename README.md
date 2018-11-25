@@ -65,7 +65,8 @@ The instructions of Leros can be categorized into following types:
 
 Instructions are 16 bits wide. The higher byte is used to encode the
 instruction, the lower byte contains either an immediate value, a
-register number, or a branch offset.
+register number, or a branch offset (part of the branch offset uses
+also bits in the upper byte).
 
 ```
 +--------+--------+
@@ -90,33 +91,39 @@ is the complete instruction set.
 
 ```
 +--------+----------+
-|00000--i| nop      |
-|000010-i| add      |
-|000011-i| sub      |
-|00010--i| shr      |
-|00011--i| unused   |
-|0010000i| load     |
-|0010001i| and      |
-|0010010i| or       |
-|0010011i| xor      |
-|00101--i| loadh    |
-|00110--i| store    |
-|001110-i| out      |
-|000001-i| in       |
+|00000---| nop      |
+|000010-0| add      |
+|000010-1| addi     |
+|000011-0| sub      |
+|000011-1| subi     |
+|00010---| shr      |
+|00011---| -        |
+|00100000| load     |
+|00100000| load i   |
+|00100010| and      |
+|00100011| andi     |
+|00100100| or       |
+|00100101| ori      |
+|00100110| xor      |
+|00100111| xori     |
+|00101001| loadhi   |
+|00101010| loadh2i  |
+|00101011| loadh3i  |
+|00110---| store    |
+|001110-?| out      |
+|000001-?| in       |
 |01000---| jal      |
 |01001---| -        |
-|01001001| brz      |
-|01001010| brnz     |
-|01001011| brp      |
-|01001100| brn      |
 |01010---| ldaddr   |
-|01100---| load ind |
-|01110---| store ind|
-|10000nnn| br       |
-|10001nnn| brz      |
-|10010nnn| brnz     |
-|10011nnn| brp      |
-|10100nnn| brn      |
+|01100--0| loadind  |
+|01100--1| loadindbu|
+|01110--0| storeind |
+|01110--1| storeindb|
+|1000nnnn| br       |
+|1001nnnn| brz      |
+|1010nnnn| brnz     |
+|1011nnnn| brp      |
+|1100nnnn| brn      |
 |11111111| scall    |
 +--------+----------+
 ```
@@ -124,15 +131,6 @@ is the complete instruction set.
 #### Comments
 
 `loadh` makes only sense for immediate values.
-For 32 bits we just need two more immediate loads, could simply by as follows:
-
-```
-+--------+----------+
-|0010100i| loadh    |
-|0010101i| loadh2   |
-|0010110i| loadh3   |
-+--------+----------+
-```
 
 Can easily be extended to 64 bits when ignoring the immediate bit.
 Load function from ALU could be dropped.
@@ -142,10 +140,7 @@ dependent. Possible interrupts should be disabled between those two instructions
 
 Why do we have a nop? addi 0 can serve as nop if needed.
 
-
 ## Getting Started
-
-
 
 To run a small test program in the simulator execute:
 ```bash
