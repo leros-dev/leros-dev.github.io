@@ -99,7 +99,7 @@ is the complete instruction set.
 |00010---| shr      |
 |00011---| -        |
 |00100000| load     |
-|00100000| load i   |
+|00100001| loadi    |
 |00100010| and      |
 |00100011| andi     |
 |00100100| or       |
