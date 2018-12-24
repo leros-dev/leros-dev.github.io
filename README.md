@@ -58,7 +58,7 @@ The instructions of Leros can be categorized into following types:
  * Indirect load and store
  * Conditional branches
  * Jump and link
- * Shift right
+ * Arithmetic shift right
  * Input and output
 
 ### Encoding
@@ -96,7 +96,7 @@ is the complete instruction set.
 |000010-1| addi     |
 |000011-0| sub      |
 |000011-1| subi     |
-|00010---| shr      |
+|00010---| sra      |
 |00011---| -        |
 |00100000| load     |
 |00100001| loadi    |
