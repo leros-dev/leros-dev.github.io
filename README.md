@@ -115,10 +115,12 @@ is the complete instruction set.
 |01000---| jal      |
 |01001---| -        |
 |01010---| ldaddr   |
-|01100--0| loadind  |
-|01100--1| loadindbu|
-|01110--0| storeind |
-|01110--1| storeindb|
+|01100-00| ldind    |
+|01100-01| ldindb   |
+|01100-10| ldindh   |
+|01110-00| stind    |
+|01110-01| stindb   |
+|01110-10| stindh   |
 |1000nnnn| br       |
 |1001nnnn| brz      |
 |1010nnnn| brnz     |
@@ -137,6 +139,8 @@ Load function from ALU could be dropped.
 
 Load address and following load/store should be emitted as pair as they are
 dependent. Possible interrupts should be disabled between those two instructions.
+
+`ldindb/ldindh` sign extends.
 
 Why do we have a nop? addi 0 can serve as nop if needed.
 
