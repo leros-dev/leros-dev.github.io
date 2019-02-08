@@ -8,7 +8,7 @@ where the architecture was designed.
 
 The Leros project is hosted at GitHub in [https://github.com/leros-dev](https://github.com/leros-dev).
 
-Leros is documented in following two publications:
+Leros is documented in following publications and documents:
 
 1. Martin Schoeberl.
 [Leros: A Tiny Microcontroller for FPGAs](http://www.jopdesign.com/doc/leros.pdf).
@@ -16,6 +16,10 @@ In Proceedings of the 21st International Conference on Field Programmable Logic 
 2. James Caska and Martin Schoeberl.
 [Java dust: How small can embedded Java be?](http://www.jopdesign.com/doc/lerosjvm.pdf)
 In Proceedings of the 9th International Workshop on Java Technologies for Real-Time and Embedded Systems (JTRES 2011), York, UK, ACM, September 2011.
+3. Morten Borup Petersen.
+[A Compiler Backend and Toolchain for the Leros Architecture](https://findit.dtu.dk/en/catalog/2443128784)
+
+
 
 A work-in-progress handbook is available as LaTeX sourcec at [Leros Handbook](https://github.com/leros-dev/leros-doc/tree/master/handbook)
 
