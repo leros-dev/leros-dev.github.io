@@ -158,25 +158,39 @@ make APP=test tools jsim
 More targets (e.g., synthesize for an FPGA) can be found in the Makefile.
 
 ### LLVM Toolchain
-Initially, pull and build the [leros-llvm](https://github.com/leros-dev/leros-llvm).
+Initially, pull and build the [leros-llvm](https://github.com/leros-dev/leros-llvm) by executing the `build.sh` script in the root repository directory.
+The LLVM toolchain provides all the binary utilities from GNU Binutils. Following are a couple of examples on how the toolchain may be used in a development process:
 
-To compile a C program for the Leros architecture, execute:
-```bash
-clang -target leros32 -c foo.c
-```
-This will create an unlinked ELF object file which contains Leros machine code.
-For emitting Leros assembly code, execute:
-```bash
-clang -target leros32 -S foo.c
-```
-If only the raw Leros instructions are needed, the built LLVM toolchain provides a tool for extracting specific segments from ELF object files:
-```bash
-llvm-objcopy foo.o --dump-section .text=foo.bin
-```
-This will dump the .text segment of the object file to a flat binary file, suitable for running on simulators.
+*Note*: If an LLVM installation is already present on your machine, ensure that the executables within the build directory of the Leros toolchains are executed, instead of the LLVM executables accessible through the `PATH`.
 
+To compile a C source file for the Leros architecture, execute:
+```bash
+clang -target leros32 -c foo.c -o foo.o
+```
+This will create an unlinked ELF object file containing Leros machine code.
+To check that actual Leros instructions were emitted, `objdump` may be used to disassemble the object file:
+```bash
+llvm-objdump -d foo.o
+```
 
-*TODO: more descriptions*
+The Leros toolchain assumes a number of constants to be present in certain registers when compiling a C program. These registers are initialized in the Leros [crt0.leros.c](https://github.com/leros-dev/leros-lib/blob/master/runtime/crt0.leros.c) file. For more information on crt0 files, refer to: https://en.wikipedia.org/wiki/Crt0.
+The crt0 object file as well as the runtime library functions are built by the `build.sh` script and placed inside the toolchain library folders. These object files are automatically linked whenever using the Leros linker.
+
+For compiling a Leros program and linking it with the crt0 object file, execute:
+```bash
+clang -target leros32 foo.c -o foo.out
+```
+This will emit an executable ELF file, which may be executed by the Leros simulator (https://github.com/leros-dev/leros-sim).
+If a binary executable is needed, the `llvm-objcopy` may be used to extract specific sections of the ELF file:
+```bash
+llvm-objcopy foo.out --dump-section .text=foo.bin
+```
+This will dump the .text segment of the ELF file to a flat binary file, suitable for running on simulators or used to initialize hardware ROMs.
+
+For compiling a Leros program to assembly, execute:
+```bash
+clang -target leros32 -S foo.c -o foo.s
+```
 
 ## Leros Versions and Compilers
 
