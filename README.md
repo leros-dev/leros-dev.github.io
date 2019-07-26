@@ -161,7 +161,7 @@ More targets (e.g., synthesize for an FPGA) can be found in the Makefile.
 Initially, pull and build the [leros-llvm](https://github.com/leros-dev/leros-llvm) by executing the `build.sh` script in the root repository directory.
 The LLVM toolchain provides all the binary utilities from GNU Binutils. Following are a couple of examples on how the toolchain may be used in a development process:
 
-*Note*: If an LLVM installation is already present on your machine, ensure that the executables within the build directory of the Leros toolchains are executed, instead of the LLVM executables accessible through the `PATH`.
+*Note*: If an LLVM installation is already present on your machine, ensure that the executables within the build directory of the Leros toolchain are executed instead of the LLVM executables accessible through the `PATH`.
 
 To compile a C source file for the Leros architecture, execute:
 ```bash
