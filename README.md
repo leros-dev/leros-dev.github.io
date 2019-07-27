@@ -181,11 +181,11 @@ For compiling a Leros program and linking it with the crt0 object file, execute:
 clang -target leros32 foo.c -o foo.out
 ```
 This will emit an executable ELF file, which may be executed by the Leros simulator (https://github.com/leros-dev/leros-sim).
-If a binary executable is needed, the `llvm-objcopy` may be used to extract specific sections of the ELF file:
+If a flat binary version of an executable is needed, the `llvm-objcopy` may be used:
 ```bash
-llvm-objcopy foo.out --dump-section .text=foo.bin
+llvm-objcopy foo.out -O binary foo.out foo.bin
 ```
-This will dump the .text segment of the ELF file to a flat binary file, suitable for running on simulators or used to initialize hardware ROMs.
+This will dump all of the ELF sections to a flat binary file, suitable for running on simulators or used to initialize hardware ROMs.
 
 For compiling a Leros program to assembly, execute:
 ```bash
