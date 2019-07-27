@@ -180,12 +180,30 @@ For compiling a Leros program and linking it with the crt0 object file, execute:
 ```bash
 clang -target leros32 foo.c -o foo.out
 ```
-This will emit an executable ELF file, which may be executed by the Leros simulator (https://github.com/leros-dev/leros-sim).
+This will emit an executable ELF file, which may be executed by the Leros simulator (https://github.com/leros-dev/leros-sim). 
 If a flat binary version of an executable is needed, the `llvm-objcopy` may be used:
 ```bash
 llvm-objcopy foo.out -O binary foo.out foo.bin
 ```
-This will dump all of the ELF sections to a flat binary file, suitable for running on simulators or used to initialize hardware ROMs.
+This will dump all of the ELF sections to a flat binary file, suitable for running on simulators or used to initialize hardware ROMs. Note, that this will emit the various program sections at some default address. When executing on hardware, it may be desired to emit code at a specific address placement. For this, a linker script is needed.
+As an example, it is desired for a programs entry point (and .text segment) to be emitted at address `0x0`.
+A linker script for this may be:
+```ld
+# file: leros.ld
+ENTRY(_start)
+
+SECTIONS
+{
+    . = 0x0;
+   .text : { *(.text) }
+}
+```
+Here, we refer to the `_start` symbol specified in the [crt0.leros.c](https://github.com/leros-dev/leros-lib/blob/master/runtime/crt0.leros.c) file, as well as specify that the .text section - the instructions of the program - are to be emitted from address 0x0.
+The linker script may be passed as an argument to the linker through clang, by specifying:
+```bash
+clang -target leros32 -Xlinker leros.ld foo.c -o foo.out
+```
+The flat binary may then be extracted from the `foo.out` ELF file.
 
 For compiling a Leros program to assembly, execute:
 ```bash
