@@ -1,6 +1,6 @@
-# Leros, a Tiny Processor Core
+# Leros: The Return of the Accumulator Machine
 
-An FPGA optimized tiny processor core for utility functions
+An FPGA-optimized tiny processor core for utility functions
 (e.g., SW UART). The challenge is to get the resources below
 500 LC and use just 2 RAM blocks. The processor is named after
 the Greek island [Leros](https://en.wikipedia.org/wiki/Leros)
@@ -8,7 +8,7 @@ where the architecture was designed.
 
 The Leros project is hosted at GitHub in [https://github.com/leros-dev](https://github.com/leros-dev).
 
-Leros is documented in following publications and documents:
+Leros is documented in the following publications and documents:
 
 1. Martin Schoeberl.
 [Leros: A Tiny Microcontroller for FPGAs](http://www.jopdesign.com/doc/leros.pdf).
@@ -21,7 +21,7 @@ In Proceedings of the 9th International Workshop on Java Technologies for Real-T
 
 
 
-A work-in-progress handbook is available as LaTeX sourcec at [Leros Handbook](https://github.com/leros-dev/leros-doc/tree/master/handbook)
+A work-in-progress handbook is available as LaTeX sources at [Leros Handbook](https://github.com/leros-dev/leros-doc/tree/master/handbook)
 
 ## Architecture
 
@@ -32,12 +32,12 @@ via indirect load and store instructions.
 
 *An accumulator instruction that does less than a typical RISC
 instruction is probably more RISC than the typical load/store
-register based RISC architecture.*
+register-based RISC architecture.*
 
  * A simple architecture
    * Results in a cheap FPGA implementation
    * Easy to use in teaching
-   * Just few instructions
+   * Just a few instructions
  * Different bit width
    * 16-bit version for tiny microcontroller
    * 32-bit version as a reasonable target for C
@@ -54,7 +54,7 @@ Further aims:
 
 ## Instruction Set Architecture
 
-The instructions of Leros can be categorized into following types:
+The instructions of Leros can be categorized into the following types:
 
  * ALU operation with the accumulator and an immediate
  * ALU operation with the accumulator and a register
@@ -80,12 +80,12 @@ also bits in the upper byte).
 
 For example `00001001.00000010` is an add immediate instruction that
 adds 2 to the accumulator, where `00001000.00000011` adds the content
-of R3 to the accumulator. For branches we use 3 of the instruction bits
+of R3 to the accumulator. For branches, we use 3 of the instruction bits
 for larger offsets.
 
 ### List of Instructions
 
-Following table shows all currently defined instructions (21, if you include
+The following table shows all currently defined instructions (21, if you include
 all conditional branch variations).
 
 Not all instruction bits are currently used (unused are marked with `-`).
@@ -221,7 +221,7 @@ Also a software simulator written in Java is available.
 
 ### Future Version
 
-To provide a reasonable target for C programs we will extend Leros
+To provide a reasonable target for C programs, we will extend Leros
 to 32 bits and rewrite the hardware description in Chisel.
 We will try to make Leros to be configurable being 16 or 32 bits.
 LLVM will be adapted for Leros32 and feedback from this compiler
@@ -230,4 +230,4 @@ This may break the compatibility with the VHDL version of Leros
 and the Java compiler.
 
 We aim to provide enough documentation and simulators so that this
-version can be used in teaching of basic computer architecture.
+the version can be used in the teaching of basic computer architecture.
