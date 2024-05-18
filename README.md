@@ -18,6 +18,10 @@ In Proceedings of the 21st International Conference on Field Programmable Logic 
 In Proceedings of the 9th International Workshop on Java Technologies for Real-Time and Embedded Systems (JTRES 2011), York, UK, ACM, September 2011.
 3. Morten Borup Petersen.
 [A Compiler Backend and Toolchain for the Leros Architecture](https://findit.dtu.dk/en/catalog/2443128784)
+BSc. thesis, Technical University of Denmark (2019)
+4. Martin Schoeberl and Morten Borup Petersen.
+[Leros: The return of the accumulator machine.](https://www.jopdesign.com/doc/leros32.pdf)
+Architecture of Computing Systems - ARCS 2019 - 32nd International Conference, Proceedings, 115-127, May, 2019. 
 
 
 
@@ -65,7 +69,12 @@ The instructions of Leros can be categorized into the following types:
  * Arithmetic shift right
  * Input and output
 
-### Encoding
+
+### List of Instructions
+
+TBD: a table with the semantics of the instructions.
+
+### Instruction Encoding
 
 Instructions are 16 bits wide. The higher byte is used to encode the
 instruction, the lower byte contains either an immediate value, a
@@ -83,7 +92,6 @@ adds 2 to the accumulator, where `00001000.00000011` adds the content
 of R3 to the accumulator. For branches, we use 3 of the instruction bits
 for larger offsets.
 
-### List of Instructions
 
 The following table shows all currently defined instructions (21, if you include
 all conditional branch variations).
@@ -230,4 +238,4 @@ This may break the compatibility with the VHDL version of Leros
 and the Java compiler.
 
 We aim to provide enough documentation and simulators so that this
-the version can be used in the teaching of basic computer architecture.
+version can be used in the teaching of basic computer architecture.
