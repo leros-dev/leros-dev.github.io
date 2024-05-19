@@ -67,12 +67,42 @@ The instructions of Leros can be categorized into the following types:
  * Conditional branches
  * Jump and link
  * Arithmetic shift right
- * Input and output
+ * (Input and output)
 
 
 ### List of Instructions
 
-TBD: a table with the semantics of the instructions.
+| Opcode    | Function               | Description                                       |
+| --------- | ---------------------- | ------------------------------------------------- |
+| add       | A = A + Rn             | Add register Rn to A                              |
+| addi      | A = A + i              | Add immediate value i to A (sign extend i)        |
+| sub       | A = A - Rn             | Subtract register Rn from A                       |
+| subi      | A = A - i              | Subtract immediate value i from A (sign extend i) |
+| sra       | A = A >> 1             | Shift A arithmetic right                          |
+| and       | A = A and Rn           | And register Rn with A                            |
+| andi      | A = A and i            | And immediate value i with A                      |
+| or        | A = A or Rn            | Or register Rn with A                             |
+| ori       | A = A or i             | Or immediate value i with A                       |
+| xor       | A = A xor Rn           | Xor register Rn with A                            |
+| xori      | A = A xor i            | Xor immediate value i with A                      |
+| load      | A = Rn                 | Load register Rn into A                           |
+| loadi     | A = i                  | Load immediate value i into A (sign extend i)     |
+| loadhi    | A$_{31-8}$ = i         | Load immediate into second byte (sign extend i)   |
+| loadh2i   | A$_{31-16}$ = i        | Load immediate into third byte (sign extend i)    |
+| loadh3i   | A$_{31-24}$ = i        | Load immediate into fourth byte (sign extend i)   |
+| store     | Rn = A                 | Store A into register Rn                          |
+| jal       | PC = A, Rn = PC + 2    | Jump to A and store return address in Rn          |
+| ldaddr    | AR = A                 | Load address register AR with A                   |
+| loadind   | A = mem[AR+(i << 2)]   | Load a word from memory into A                    |
+| loadindb  | A = mem[AR+i]$_{7-0}$  | Load a byte signe extending from memory into A    |
+| storeind  | mem[AR+(i << 2)] = A   | Store A into memory                               |
+| storeindb | mem[AR+i]$_{7-0}$ = A  | Store a byte into memory                          |
+| br        | PC = PC + o            | Branch                                            |
+| brz       | if A == 0 PC = PC + o  | Branch if A is zero                               |
+| brnz      | if A != 0 PC = PC + o  | Branch if A is not zero                           |
+| brp       | if A >= 0 PC = PC + o  | Branch if A is positive                           |
+| brn       | if A < 0 PC = PC + o   | Branch if A is negative                           |
+| scall     | scall A                | System call (simulation hook)                     |
 
 ### Instruction Encoding
 
