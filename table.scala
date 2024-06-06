@@ -19,7 +19,7 @@ Seq("loadh2i", "A$_{31-16}$ = i ", "Load immediate into third byte (sign extend 
 Seq("loadh3i", "A$_{31-24}$ = i", "Load immediate into fourth byte (sign extend i)"),
 Seq("store", "Rn = A", "Store A into register Rn"),
 Seq("jal", "PC = A, Rn = PC + 2", "Jump to A and store return address in Rn"),
-Seq("ldaddr", "AR = A", "Load address register AR with A"),
+Seq("ldaddr", "AR = Rn", "Load address register AR with Rn"),
 Seq("loadind", "A = mem[AR+(i << 2)]", "Load a word from memory into A"),
 Seq("loadindb", "A = mem[AR+i]$_{7-0}$", "Load a byte signe extending from memory into A"),
 Seq("storeind", "mem[AR+(i << 2)] = A", "Store A into memory"),
