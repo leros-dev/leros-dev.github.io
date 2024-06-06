@@ -92,7 +92,7 @@ The instructions of Leros can be categorized into the following types:
 | loadh3i   | A$_{31-24}$ = i        | Load immediate into fourth byte (sign extend i)   |
 | store     | Rn = A                 | Store A into register Rn                          |
 | jal       | PC = A, Rn = PC + 2    | Jump to A and store return address in Rn          |
-| ldaddr    | AR = A                 | Load address register AR with A                   |
+| ldaddr    | AR = Rn                 | Load address register AR with Rn                   |
 | loadind   | A = mem[AR+(i << 2)]   | Load a word from memory into A                    |
 | loadindb  | A = mem[AR+i]$_{7-0}$  | Load a byte signe extending from memory into A    |
 | storeind  | mem[AR+(i << 2)] = A   | Store A into memory                               |
@@ -188,9 +188,9 @@ Why do we have a nop? addi 0 can serve as nop if needed.
 
 ## Getting Started
 
-To run a small test program in the simulator execute:
+To run all test execute:
 ```bash
-make APP=test tools jsim
+sbt test
 ```
 
 More targets (e.g., synthesize for an FPGA) can be found in the Makefile.
@@ -250,14 +250,14 @@ clang -target leros32 -S foo.c -o foo.s
 
 ## Leros Versions and Compilers
 
-### Current Version
+### Initial Version
 
 The initial version of Leros was designed as a 16-bit accumulator
 machine and written in VHDL. Besides writing assembly programs
 a Java JVM for microcontroller has been ported to support Leros.
 Also a software simulator written in Java is available.
 
-### Future Version
+### Current Development Version
 
 To provide a reasonable target for C programs, we will extend Leros
 to 32 bits and rewrite the hardware description in Chisel.
